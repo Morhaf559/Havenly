@@ -6,12 +6,14 @@ class CostumField extends StatefulWidget {
     this.width,
     this.alignment,
     this.labelText,
+    this.controller,
   });
   bool? isPassword;
   //String? text;
   double? width;
   Alignment? alignment;
   String? labelText;
+  final TextEditingController? controller;
 
   @override
   State<CostumField> createState() => _CostumFieldState();
@@ -39,6 +41,7 @@ class _CostumFieldState extends State<CostumField> {
             child: SizedBox(
               width: widget.width,
               child: TextField(
+                controller: widget.controller,
                 obscureText: widget.isPassword! ? _obscureText : false,
                 decoration: InputDecoration(
                   labelText: widget.labelText,

@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:havenly/view/screens/login_screen.dart';
-import 'package:havenly/view/screens/register_screen.dart';
-import 'package:havenly/view/screens/login_screen.dart';
+import 'package:get_storage/get_storage.dart';
 
-void main() {
+import 'package:havenly/features/auth/view/screens/register_screen.dart';
+import 'package:havenly/features/auth/view/screens/login_screen.dart';
+import 'package:havenly/features/auth/view/screens/welcome_screen.dart';
+
+void main() async {
+  await GetStorage.init();
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LoginScreen(),
+      home: WelcomeScreen(),
     );
   }
 }

@@ -1,12 +1,13 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:havenly/view/widget/costum_button.dart';
+//import 'package:havenly/features/auth/view/widget/costum_button.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ImagePickerWidget extends StatefulWidget {
-  ImagePickerWidget({this.text});
+  ImagePickerWidget({this.text, this.onImagePicked});
   String? text;
+  final ValueChanged<String>? onImagePicked;
   @override
   State<ImagePickerWidget> createState() => _ImagePickerWidgetState();
 }
@@ -18,9 +19,10 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
     // Pick an image.
     //final XFile? image = await picker.pickImage(source: ImageSource.gallery);
     // Capture a photo.
-    final XFile? photo = await picker.pickImage(source: ImageSource.gallery);
+    final XFile? photo = await picker.pickImage(source: ImageSource.camera);
     if (photo != null) {
       file = File(photo.path);
+      widget.onImagePicked!(file!.path);
     }
 
     setState(() {});
@@ -35,7 +37,10 @@ class _ImagePickerWidgetState extends State<ImagePickerWidget> {
             onPressed: () async {
               await getImage();
             },
-            child: Text('${widget.text}'),
+            child: Text(
+              '${widget.text}',
+              style: TextStyle(color: Color(0xff001733)),
+            ),
           ),
           if (file != null) Image.file(file!, width: 50, height: 25),
         ],

@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:havenly/controller/date_controller.dart';
-import 'package:havenly/view/screens/login_screen.dart';
-import 'package:havenly/view/widget/button_check.dart';
-import 'package:havenly/view/widget/costum_button.dart';
-import 'package:havenly/view/widget/costum_field.dart';
-import 'package:havenly/view/widget/date_time_widget.dart';
-import 'package:havenly/view/widget/image_picker_widget.dart';
+import 'package:havenly/features/auth/controller/register_controller.dart';
+import 'package:havenly/features/auth/view/screens/login_screen.dart';
+import 'package:havenly/features/auth/view/widget/button_check.dart';
+import 'package:havenly/features/auth/view/widget/costum_button.dart';
+import 'package:havenly/features/auth/view/widget/costum_field.dart';
+import 'package:havenly/features/auth/view/widget/date_time_widget.dart';
+import 'package:havenly/features/auth/view/widget/image_picker_widget.dart';
 
 class RegisterScreen extends StatelessWidget {
   RegisterScreen({super.key});
 
   @override
-  final DateController dateController = Get.put(DateController());
+  //final DateController dateController = Get.put(DateController());
+  final RegisterController registerController = Get.find<RegisterController>();
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,6 +67,8 @@ class RegisterScreen extends StatelessWidget {
                         children: [
                           Expanded(
                             child: CostumField(
+                              controller:
+                                  registerController.firstNameController,
                               //  text: 'First Name',
                               labelText: 'First Name',
                               width: 175,
@@ -75,6 +78,7 @@ class RegisterScreen extends StatelessWidget {
 
                           Expanded(
                             child: CostumField(
+                              controller: registerController.lastNameController,
                               // text: 'Last Name',
                               labelText: 'Last Name',
                               width: 175,
@@ -84,29 +88,67 @@ class RegisterScreen extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 10),
-
-                      CostumField(labelText: 'Phone Number'),
-                      const SizedBox(height: 10),
-
-                      CostumField(labelText: 'Password', isPassword: true),
+                      CostumField(
+                        controller: registerController.usernameController,
+                        labelText: 'Username',
+                      ),
                       const SizedBox(height: 10),
                       CostumField(
+                        controller: registerController.phoneController,
+                        labelText: 'Phone Number',
+                      ),
+                      const SizedBox(height: 10),
+
+                      CostumField(
+                        controller: registerController.passwordController,
+                        labelText: 'Password',
+                        isPassword: true,
+                      ),
+                      const SizedBox(height: 10),
+                      CostumField(
+                        controller:
+                            registerController.confirmedPasswordController,
                         labelText: 'Confirmed Password',
                         isPassword: true,
                       ),
 
-                      ElevatedButton(
-                        onPressed: () {
-                          final controller = Get.find<DateController>();
-                          final date = controller.selectedDate.value;
-                        },
-                        child: Text('Register'),
-                      ),
+                      DateTimeWidget(),
+                      SizedBox(height: 10),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          ImagePickerWidget(text: 'Upload your ID image'),
-                          ImagePickerWidget(text: 'Upload personal photo'),
+                          Expanded(
+                            child: Container(
+                              margin: const EdgeInsets.only(right: 5),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: const Color(0xffE0E4EB),
+                              ),
+                              child: ImagePickerWidget(
+                                text: 'ID image',
+                                onImagePicked: (path) {
+                                  registerController.idImagePath.value = path;
+                                },
+                              ),
+                            ),
+                          ),
+
+                          Expanded(
+                            child: Container(
+                              margin: const EdgeInsets.only(left: 5),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: const Color(0xffE0E4EB),
+                              ),
+                              child: ImagePickerWidget(
+                                text: 'personal photo',
+                                onImagePicked: (path) {
+                                  registerController.personalPhotoPath.value =
+                                      path;
+                                },
+                              ),
+                            ),
+                          ),
                         ],
                       ),
 
@@ -134,7 +176,9 @@ class RegisterScreen extends StatelessWidget {
                         text: 'Sign up',
                         Width: double.infinity,
                         color: const Color(0xff024DAA),
-                        onTap: () {},
+                        onTap: () {
+                          registerController.registerUser();
+                        },
                       ),
 
                       const SizedBox(height: 15),

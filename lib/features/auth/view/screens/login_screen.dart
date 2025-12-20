@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/get_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
-import 'package:havenly/view/screens/register_screen.dart';
-import 'package:havenly/view/widget/costum_button.dart';
-import 'package:havenly/view/widget/costum_field.dart';
-import 'package:havenly/view/widget/button_check.dart';
+import 'package:havenly/features/auth/Binding/auth_binding.dart';
+import 'package:havenly/features/auth/controller/login_controller.dart';
+import 'package:havenly/features/auth/view/screens/register_screen.dart';
+import 'package:havenly/features/auth/view/widget/costum_button.dart';
+import 'package:havenly/features/auth/view/widget/costum_field.dart';
+import 'package:havenly/features/auth/view/widget/button_check.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  LoginScreen({super.key});
+  LoginController loginController = Get.find<LoginController>();
 
   @override
   Widget build(BuildContext context) {
@@ -55,9 +60,16 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 10),
-                      CostumField(labelText: 'Phone Number'),
+                      CostumField(
+                        labelText: 'Phone Number',
+                        controller: loginController.phoneController,
+                      ),
                       SizedBox(height: 5),
-                      CostumField(labelText: 'Password', isPassword: true),
+                      CostumField(
+                        labelText: 'Password',
+                        isPassword: true,
+                        controller: loginController.passwordController,
+                      ),
 
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -85,14 +97,22 @@ class LoginScreen extends StatelessWidget {
                         ],
                       ),
 
-                      CostumButton(
-                        text: 'Log in',
-                        Width: double.infinity,
-                        color: Color(0xff024DAA),
-                        onTap: () {
-                          //The page next login
-                        },
-                      ),
+                      Obx(() {
+                        return CostumButton(
+                          text: loginController.isLoading.value
+                              ? 'Loading...'
+                              : 'Login',
+                          Width: double.infinity,
+                          color: Color(0xff024DAA),
+
+                          onTap: loginController.isLoading.value
+                              ? null
+                              : () {
+                                  loginController.loginUser();
+                                  //The page next login
+                                },
+                        );
+                      }),
                       SizedBox(height: 25),
                       Row(
                         children: [
@@ -163,7 +183,10 @@ class LoginScreen extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
-                              Get.off(RegisterScreen());
+                              Get.to(
+                                () => RegisterScreen(),
+                                binding: AuthBinding(),
+                              );
                             },
                             child: Text(
                               'Register Now',
