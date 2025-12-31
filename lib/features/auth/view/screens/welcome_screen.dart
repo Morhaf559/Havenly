@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
-import 'package:havenly/features/auth/Binding/auth_binding.dart';
-import 'package:havenly/features/auth/controller/login_controller.dart';
-import 'package:havenly/features/auth/view/screens/login_screen.dart';
+
+import '../../Binding/auth_binding.dart';
+import 'login_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -24,9 +24,8 @@ class WelcomeScreen extends StatelessWidget {
           child: Column(
             children: [
               Align(
-                alignment: AlignmentGeometry.topCenter,
                 child: Image.asset(
-                  'assets/social_media/Havenly3.png',
+                  'assets/images/social_media/Havenly3.png',
                   width: 180,
                   height: 180,
                 ),

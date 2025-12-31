@@ -1,9 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:get/get_connect/http/src/response/response.dart';
-import 'package:havenly/features/auth/model/auth_response_model.dart';
-import 'package:havenly/features/auth/model/image_id_upload_model.dart';
+
 import 'package:http/http.dart' as http;
+import 'package:my_havenly_application/features/auth/model/image_id_upload_model.dart';
+
+import '../model/auth_response_model.dart';
 
 class AuthRegisterService {
   //  String baseUrl = 'http://127.0.0.1:8000/api/';
@@ -32,8 +34,6 @@ class AuthRegisterService {
     );
     final responseBody = await response.stream.bytesToString();
     final data = jsonDecode(responseBody);
-    print('Image Upload Status Code: ${response.statusCode}');
-    print('Image Upload RAW Response: $responseBody');
 
     if (response.statusCode == 200 || response.statusCode == 201) {
       return ImageIdUploadModel.fromJson(data);
@@ -96,7 +96,6 @@ class AuthRegisterService {
     if (response.statusCode == 200 || response.statusCode == 201) {
       return AuthResponseModel.fromJson(data['data']);
     } else {
-      print('Registration Failed Details: ${data['errors']}');
       throw Exception(data['message'] ?? 'register failed');
     }
   }

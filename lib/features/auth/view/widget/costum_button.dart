@@ -22,7 +22,7 @@ class CostumButton extends StatelessWidget {
                 ? Text(
                     text!,
                     style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 20,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
@@ -31,7 +31,7 @@ class CostumButton extends StatelessWidget {
           ),
 
           width: Width,
-          height: 40,
+          height: 50,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(24),
             color: color,

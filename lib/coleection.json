@@ -1,0 +1,803 @@
+{
+  "info": {
+    "_postman_id": "1359edd4-de79-4907-9744-5adf535bf55f",
+    "name": "Apartment",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "50697017",
+    "_collection_link": "https://university-projs753.postman.co/workspace/Project-0~dc077653-7b1a-4b43-899b-5e779ee00148/collection/50697017-1359edd4-de79-4907-9744-5adf535bf55f?action=share&source=collection_link&creator=50697017"
+  },
+  "item": [
+    {
+      "name": "auth",
+      "item": [
+        {
+          "name": "register",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Parse JSON response\r",
+                  "let jsonData = pm.response.json();\r",
+                  "\r",
+                  "// Check if token exists in response\r",
+                  "let token = jsonData?.data?.token;\r",
+                  "if (token) {\r",
+                  "    pm.environment.set(\"token\", token);\r",
+                  "    console.log(\"Token saved to environment:\", token);\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"phone\": \"963964587965\",\r\n    \"password\": \"123456789\",\r\n    \"password_confirmation\": \"123456789\",\r\n    \"first_name\": \"first name\",\r\n    \"last_name\": \"last name\",\r\n    \"username\": \"username2\",\r\n    \"date_of_birth\": \"2025-12-08\",\r\n    \"id_photo\": 5, \r\n    \"personal_photo\": 6\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/register",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "register",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"phone\": \"963964587365\",\r\n    \"password\": \"123456789\",\r\n    \"password_confirmation\": \"123456789\",\r\n    \"first_name\": \"first name\",\r\n    \"last_name\": \"last name\",\r\n    \"username\": \"username1\",\r\n    \"date_of_birth\": \"2025-12-08\",\r\n    \"id_photo\": 5, \r\n    \"personal_photo\": 6\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/auth/register",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "register"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "",
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "127.0.0.1:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.12"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 22:52:21 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"data\": {\n        \"token\": \"2|p1UCPlc9ULigTF2W9HYApJyul54cj0GS3EWLoQR5951a9121\",\n        \"user\": {\n            \"id\": 4,\n            \"phone\": \"963964587365\",\n            \"first_name\": \"first name\",\n            \"last_name\": \"last name\",\n            \"username\": \"username1\",\n            \"date_of_birth\": \"2025-12-08\",\n            \"role_id\": null,\n            \"id_photo\": 5,\n            \"personal_photo\": 6,\n            \"status\": null\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Parse JSON response\r",
+                  "let jsonData = pm.response.json();\r",
+                  "\r",
+                  "// Check if token exists in response\r",
+                  "let token = jsonData?.data?.token;\r",
+                  "if (token) {\r",
+                  "    pm.environment.set(\"token\", token);\r",
+                  "    console.log(\"Token saved to environment:\", token);\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"phone\": \"963964587965\",\r\n    \"password\": \"123456789\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "login",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"phone\": \"963964587965\",\r\n    \"password\": \"123456789\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/auth/login",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "login"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "127.0.0.1:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.12"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 23:04:13 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"data\": {\n        \"token\": \"7|z9kIQCdrv9akvAGTSBLDfiDvMykBv4zncSFpHTC1ba402b34\",\n        \"user\": {\n            \"id\": 5,\n            \"phone\": \"963964587965\",\n            \"first_name\": \"first name\",\n            \"last_name\": \"last name\",\n            \"username\": \"username2\",\n            \"date_of_birth\": \"2025-12-08\",\n            \"role\": \"user\",\n            \"id_photo\": 5,\n            \"personal_photo\": 6,\n            \"status\": 2\n        }\n    }\n}"
+            }
+          ]
+        },
+        {
+          "name": "me",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Parse JSON response\r",
+                  "let jsonData = pm.response.json();\r",
+                  "\r",
+                  "// Check if token exists in response\r",
+                  "if (jsonData.data.token) {\r",
+                  "    pm.environment.set(\"token\", jsonData.data.token);\r",
+                  "    console.log(\"Token saved to environment:\", jsonData.token);\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/me",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "me"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "me",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"phone\": \"963964587965\",\r\n    \"password\": \"123456789\",\r\n    \"password_confirmation\": \"123456789\",\r\n    \"first_name\": \"first name\",\r\n    \"last_name\": \"last name\",\r\n    \"username\": \"username2\",\r\n    \"date_of_birth\": \"2025-12-08\",\r\n    \"id_photo\": 5, \r\n    \"personal_photo\": 6\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/auth/me",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "me"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "127.0.0.1:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.12"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 23:07:22 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 5,\n    \"phone\": \"963964587965\",\n    \"first_name\": \"first name\",\n    \"last_name\": \"last name\",\n    \"username\": \"username2\",\n    \"date_of_birth\": \"2025-12-08\",\n    \"role\": \"user\",\n    \"id_photo\": 5,\n    \"personal_photo\": 6,\n    \"status\": 2\n}"
+            }
+          ]
+        },
+        {
+          "name": "logout",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "// Parse JSON response\r",
+                  "let jsonData = pm.response.json();\r",
+                  "\r",
+                  "// Check if token exists in response\r",
+                  "if (jsonData.data.token) {\r",
+                  "    pm.environment.set(\"token\", jsonData.data.token);\r",
+                  "    console.log(\"Token saved to environment:\", jsonData.token);\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/auth/logout",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "auth",
+                "logout"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "media",
+      "item": [
+        {
+          "name": "show",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/media/:id",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "media",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "store",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/pdf",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "medium",
+                  "type": "file",
+                  "src": "/C:/Users/ENG. HAMZA/Downloads/Features__Basic_style_Sheer__Opaque_Stretch_-removebg-preview.png"
+                },
+                {
+                  "key": "type",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "for",
+                  "value": "personal-photo",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/media",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "media"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "success",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/pdf",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "medium",
+                      "type": "file",
+                      "src": "/C:/Users/ENG. HAMZA/Downloads/Features__Basic_style_Sheer__Opaque_Stretch_-removebg-preview.png"
+                    },
+                    {
+                      "key": "type",
+                      "value": "1",
+                      "type": "text"
+                    },
+                    {
+                      "key": "for",
+                      "value": "personal-photo",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/media",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "media"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "127.0.0.1:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.12"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 22:10:09 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": 8,\n    \"name\": \"Features__Basic_style_Sheer__Opaque_Stretch_-removebg-preview.png\",\n    \"url\": \"http://127.0.0.1:8000/storage/media/personal/photo/d9Mc2B8JaU114A4pJ5UW9twtZzCYLg8A0rXlhZAX.png\",\n    \"extension\": \"png\",\n    \"type\": 1,\n    \"for\": \"personal-photo\",\n    \"createdAt\": \"2025-12-10T22:10:09.000000Z\",\n    \"createdBy\": null\n}"
+            }
+          ]
+        },
+        {
+          "name": "store many",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "media[0][medium]",
+                  "type": "file",
+                  "src": "/C:/Users/ENG. HAMZA/Downloads/facebook (1).png"
+                },
+                {
+                  "key": "media[0][type]",
+                  "value": "1",
+                  "type": "text"
+                },
+                {
+                  "key": "media[0][for]",
+                  "value": "id-photo",
+                  "type": "text"
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{baseUrl}}/media/create-many",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "media",
+                "create-many"
+              ]
+            }
+          },
+          "response": [
+            {
+              "name": "error unauthentication",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "key": "media[0][medium]",
+                      "type": "file",
+                      "src": "/C:/Users/ENG. HAMZA/Downloads/facebook (1).png"
+                    },
+                    {
+                      "key": "media[0][type]",
+                      "value": "1",
+                      "type": "text"
+                    },
+                    {
+                      "key": "media[0][for]",
+                      "value": "id-photo",
+                      "type": "text"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/media/store-many",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "media",
+                    "store-many"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Host",
+                  "value": "127.0.0.1:8000"
+                },
+                {
+                  "key": "Connection",
+                  "value": "close"
+                },
+                {
+                  "key": "X-Powered-By",
+                  "value": "PHP/8.2.12"
+                },
+                {
+                  "key": "Cache-Control",
+                  "value": "no-cache, private"
+                },
+                {
+                  "key": "Date",
+                  "value": "Wed, 10 Dec 2025 22:20:31 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Access-Control-Allow-Origin",
+                  "value": "*"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"message\": \"Unauthenticated.\"\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          "pm.request.headers.add(\r",
+          "    {\r",
+          "        key: \"Accept\", \r",
+          "        value: \"application/json\"\r",
+          "    },\r",
+          "    {\r",
+          "        key: \"Content-Type\",\r",
+          "        value: \"application/json\"\r",
+          "    }\r",
+          ");"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": ""
+    }
+  ]
+}

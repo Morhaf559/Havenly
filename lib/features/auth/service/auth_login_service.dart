@@ -1,12 +1,14 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
-import 'package:havenly/features/auth/model/login_model.dart';
+
 import 'package:http/http.dart' as http;
 import 'package:get_storage/get_storage.dart';
-import 'package:havenly/features/auth/model/auth_response_model.dart';
+import 'package:my_havenly_application/features/auth/controller/locale_controller.dart';
+import 'package:my_havenly_application/features/auth/model/auth_response_model.dart';
 
 class AuthLoginService {
   var box = GetStorage();
@@ -14,17 +16,17 @@ class AuthLoginService {
 
   Future<AuthResponseModel?> Login(String phone, String password) async {
     try {
+      String currentLang = Get.locale?.languageCode ?? 'ar';
       final loginUrl = Uri.parse('$baseUrl/auth/login');
       final response = await http.post(
         loginUrl,
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
+          'Accept-Language': currentLang,
         },
         body: jsonEncode({'phone': phone.trim(), 'password': password}),
       );
-      print("Status Code from Server: ${response.statusCode}");
-      print("Body from Server: ${response.body}");
       if (response.statusCode == 200 || response.statusCode == 201) {
         var responseData = jsonDecode(response.body);
         AuthResponseModel userLogin = AuthResponseModel.fromJson(responseData);
@@ -41,7 +43,6 @@ class AuthLoginService {
         return null;
       }
     } catch (e) {
-      print('Error connection$e');
       return null;
     }
   }

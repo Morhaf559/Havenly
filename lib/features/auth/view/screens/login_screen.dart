@@ -3,209 +3,186 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/get_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
-import 'package:havenly/features/auth/Binding/auth_binding.dart';
-import 'package:havenly/features/auth/controller/login_controller.dart';
-import 'package:havenly/features/auth/view/screens/register_screen.dart';
-import 'package:havenly/features/auth/view/widget/costum_button.dart';
-import 'package:havenly/features/auth/view/widget/costum_field.dart';
-import 'package:havenly/features/auth/view/widget/button_check.dart';
+import 'package:my_havenly_application/features/auth/controller/locale_controller.dart';
+import 'package:my_havenly_application/features/auth/controller/login_controller.dart';
+import 'package:my_havenly_application/features/auth/controller/theme_controller.dart';
+import 'package:my_havenly_application/features/auth/view/screens/register_screen.dart';
+import 'package:my_havenly_application/features/auth/view/widget/button_check.dart';
+import 'package:my_havenly_application/features/auth/view/widget/costum_button.dart';
+import 'package:my_havenly_application/features/auth/view/widget/costum_field.dart';
+
+import '../../Binding/auth_binding.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
+
   LoginController loginController = Get.find<LoginController>();
+  final LocaleController localeController = Get.find<LocaleController>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff001733),
+      backgroundColor: ThemeController.bg,
 
-      body: ListView(
+      body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(vertical: 40, horizontal: 20),
-        children: [
-          Column(
-            children: [
-              SizedBox(height: 40),
-              Text(
-                'Welcome Back !',
-                style: TextStyle(
-                  fontSize: 32,
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(height: 100),
+            Text(
+              'Welcome Back !'.tr,
+              style: TextStyle(
+                fontSize: 32,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
               ),
-              Text(
-                'sign in to continue',
-                style: TextStyle(fontSize: 16, color: Colors.white),
-              ),
-              SizedBox(height: 10),
+            ),
+            Text(
+              'sign in to continue'.tr,
+              style: TextStyle(fontSize: 20, color: Colors.white),
+            ),
+            SizedBox(height: 10),
 
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.blue, width: 2),
-                  borderRadius: BorderRadius.circular(18),
-                  color: Colors.white,
-                ),
-                padding: const EdgeInsets.all(10),
-                alignment: Alignment.topCenter,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 15),
-                  child: Column(
-                    children: [
-                      Text(
-                        'Log in',
-                        style: TextStyle(
-                          fontSize: 24,
-                          color: Color(0xff001733),
-                          fontWeight: FontWeight.bold,
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.blue, width: 2),
+                borderRadius: BorderRadius.circular(18),
+                color: ThemeController.card,
+              ),
+              padding: const EdgeInsets.all(10),
+              alignment: Alignment.topCenter,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 15),
+                child: Column(
+                  children: [
+                    Text(
+                      'Log in'.tr,
+                      style: TextStyle(
+                        fontSize: 32,
+                        color: Color(0xff001733),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    CostumField(
+                      labelText: 'Phone Number'.tr,
+                      controller: loginController.phoneController,
+                    ),
+                    SizedBox(height: 5),
+                    CostumField(
+                      labelText: 'Password'.tr,
+                      isPassword: true,
+                      controller: loginController.passwordController,
+                    ),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        // ButtonCheck(
+                        //   text: 'Remember me',
+                        //   iconOff: Icon(Icons.radio_button_unchecked),
+                        //   iconOn: Icon(Icons.radio_button_checked),
+                        // )
+                        Spacer(flex: 4),
+                        GestureDetector(
+                          onTap: () {
+                            //page of FORGET PASSWORD
+                          },
+                          child: Text(
+                            'Forget password?'.tr,
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.blue,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
                         ),
-                      ),
-                      SizedBox(height: 10),
-                      CostumField(
-                        labelText: 'Phone Number',
-                        controller: loginController.phoneController,
-                      ),
-                      SizedBox(height: 5),
-                      CostumField(
-                        labelText: 'Password',
-                        isPassword: true,
-                        controller: loginController.passwordController,
-                      ),
+                        //  Spacer(flex: 1),
+                      ],
+                    ),
 
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          ButtonCheck(
-                            text: 'Remember me',
-                            iconOff: Icon(Icons.radio_button_unchecked),
-                            iconOn: Icon(Icons.radio_button_checked),
-                          ),
-                          Spacer(flex: 4),
-                          GestureDetector(
-                            onTap: () {
-                              //page of FORGET PASSWORD
-                            },
-                            child: Text(
-                              'Forget password?',
-                              style: TextStyle(
-                                fontSize: 10,
-                                color: Colors.blue,
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                          ),
-                          //  Spacer(flex: 1),
-                        ],
+                    Obx(() {
+                      return CostumButton(
+                        text: loginController.isLoading.value
+                            ? 'Loading...'.tr
+                            : 'Login'.tr,
+                        Width: double.infinity,
+                        color: Color(0xff024DAA),
+
+                        onTap: loginController.isLoading.value
+                            ? null
+                            : () {
+                                loginController.loginUser();
+                                //The page next login
+                              },
+                      );
+                    }),
+                    ElevatedButton(
+                      onPressed: () {
+                        localeController.ChangeLang('ar');
+                      },
+                      child: Text(
+                        'arabic'.tr,
+                        style: TextStyle(color: Colors.amber),
                       ),
-
-                      Obx(() {
-                        return CostumButton(
-                          text: loginController.isLoading.value
-                              ? 'Loading...'
-                              : 'Login',
-                          Width: double.infinity,
-                          color: Color(0xff024DAA),
-
-                          onTap: loginController.isLoading.value
-                              ? null
-                              : () {
-                                  loginController.loginUser();
-                                  //The page next login
-                                },
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        localeController.ChangeLang('en');
+                      },
+                      child: Text('english'.tr),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        // 1. تبديل الثيم في GetX
+                        Get.changeThemeMode(
+                          Get.isDarkMode ? ThemeMode.light : ThemeMode.dark,
                         );
-                      }),
-                      SizedBox(height: 25),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Divider(
-                              color: Color(0xff001733),
-                              indent: 5,
-                              endIndent: 5,
-                            ),
+
+                        // 2. تحديث الواجهة فوراً لرؤية الألوان الجديدة
+                        Get.forceAppUpdate();
+                      },
+                      child: Text("تبديل الوضع (ليلي/نهاري)"),
+                    ),
+
+                    SizedBox(height: 10),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Don't have an account?".tr,
+                          style: TextStyle(
+                            color: Color(0xff001733),
+                            fontSize: 16,
                           ),
-                          Text(
-                            "Or Log in With",
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Get.to(
+                              () => RegisterScreen(),
+                              binding: AuthBinding(),
+                            );
+                          },
+                          child: Text(
+                            'Register Now'.tr,
                             style: TextStyle(
-                              color: Colors.blueGrey,
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
+                              color: Colors.blue,
+                              fontSize: 16,
+                              decoration: TextDecoration.underline,
                             ),
                           ),
-                          Expanded(
-                            child: Divider(
-                              color: Color(0xff001733),
-                              indent: 5,
-                              endIndent: 5,
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          CostumButton(
-                            Width: 60,
-                            color: Color(0xffEEEEEE),
-                            image: 'assets/social_media/facebook.png',
-                            onTap: () {
-                              //account facebook
-                            },
-                          ),
-                          CostumButton(
-                            Width: 60,
-                            color: Color(0xffEEEEEE),
-                            image: 'assets/social_media/google.png',
-                            onTap: () {
-                              //account google
-                            },
-                          ),
-                          CostumButton(
-                            Width: 60,
-                            color: Color(0xffEEEEEE),
-                            image: 'assets/social_media/apple.png',
-                            onTap: () {
-                              //accomt apple
-                            },
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 32),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "Don't have an account?",
-                            style: TextStyle(
-                              color: Color(0xff001733),
-                              fontSize: 11,
-                            ),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Get.to(
-                                () => RegisterScreen(),
-                                binding: AuthBinding(),
-                              );
-                            },
-                            child: Text(
-                              'Register Now',
-                              style: TextStyle(
-                                color: Colors.blue,
-                                fontSize: 11,
-                                decoration: TextDecoration.underline,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 10),
+                  ],
                 ),
               ),
-            ],
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }

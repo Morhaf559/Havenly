@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:havenly/features/auth/controller/date_controller.dart';
+
+import '../../controller/date_controller.dart';
 
 class DateTimeWidget extends StatelessWidget {
   DateTimeWidget({super.key});
@@ -11,8 +12,8 @@ class DateTimeWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const Text(
-          'Date of birth',
+        Text(
+          'Date of birth'.tr,
           style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
