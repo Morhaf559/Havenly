@@ -1,16 +1,40 @@
-# my_havenly_application
+# Havenly App - تطبيق هيفنلي للعقارات 🏠✨
 
-A new Flutter project.
+تطبيق متكامل لإدارة وحجز العقارات، تم تطويره باستخدام **Flutter** ليوفر تجربة سلسة للمستخدمين في البحث عن شقق وعقارات.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 📺 فيديو تعريفي (Demo Video)
+يمكنك مشاهدة عرض كامل للتطبيق ومميزاته عبر صفحتي على فيسبوك من هنا:
+👉 [**شاهد الفيديو التعريفي على فيسبوك**](https://www.facebook.com/reel/1453514822956728/?app=fbl)
 
-A few resources to get you started if this is your first Flutter project:
+---
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 🚀 المميزات التقنية (Technical Features)
+* **Clean Architecture:** تقسيم المشروع إلى طبقات (Features, Core) لسهولة الصيانة.
+* **State Management:** استخدام **GetX** (أو Bloc حسب كودك) لإدارة الحالة بكفاءة.
+* **Localization:** دعم كامل للغتين **العربية والإنجليزية**.
+* **Dark/Light Mode:** دعم الوضع الليلي والنهاري.
+* **API Integration:** التعامل مع البيانات الخارجية باستخدام مكتبة **Dio**.
+* **Navigation:** نظام تنقل متقدم بين الشاشات (App Routes).
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
+
+## 📱 شاشات التطبيق الرئيسية
+* **Onboarding & Splash:** مقدمة جذابة للمستخدم.
+* **Auth System:** نظام تسجيل دخول وإنشاء حساب متكامل.
+* **Home & Explore:** استعراض العقارات المتاحة مع فلاتر بحث متقدمة.
+* **Owner Dashboard:** لوحة تحكم خاصة بأصحاب العقارات لإدارة طلبات الحجز.
+* **Profile & Settings:** إدارة الحساب الشخصي وتغيير الإعدادات.
+
+---
+
+## 🛠 كيف تشغل المشروع؟
+1. `git clone https://github.com/Morhaf559/Havenly.git`
+2. `flutter pub get`
+3. `flutter run`
+
+---
+
+## 📩 تواصل معي
+**Morhaf** - [GitHub Profile](https://github.com/Morhaf559)
