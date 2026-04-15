@@ -1,0 +1,3 @@
+class HomeEndpoints {
+  HomeEndpoints._();
+}

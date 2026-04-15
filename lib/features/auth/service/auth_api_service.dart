@@ -132,6 +132,51 @@ class AuthApiService {
     }
   }
 
+  ///otp
+  static Future<void> sendOtp(String phone) async {
+    try {
+      final response = await _dioInstance.post(
+        '/auth/send-otp',
+        data: {'phone': phone.trim()},
+      );
+      if (response.statusCode != 200 || response.statusCode != 204) {
+        throw Exception(response.data['message'] ?? 'Failed to send otp');
+      }
+    } on DioException catch (e) {
+      handleDioError(e, 'Send otp');
+    }
+  }
+
+  static Future<bool?> verifyOtp(String phone, String otp) async {
+    try {
+      final response = await _dioInstance.post(
+        '/auth/verify-otp',
+        data: {'phone': phone.trim(), 'otp': otp.trim()},
+      );
+      if (response.statusCode == 200 || response.statusCode == 204) {
+        return true;
+      }
+      return false;
+    } on DioException catch (e) {
+      handleDioError(e, 'verify code');
+      return false;
+    }
+  }
+
+  //otp
+  static void handleDioError(DioException e, String action) {
+    if (e.response != null) {
+      final errorData = e.response?.data;
+      final errorMessage = errorData is Map
+          ? (errorData['message'] ??
+                errorData['errors']?.toString() ??
+                '$action Failed')
+          : '$action failed: ${errorData.toString()}';
+      throw Exception(errorMessage);
+    }
+    throw Exception('Network error during $action: ${e.message}');
+  }
+
   /// Register a new user
   /// Returns AuthResponseModel with token and user data
   static Future<AuthResponseModel> register({

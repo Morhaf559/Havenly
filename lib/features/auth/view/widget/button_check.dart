@@ -1,9 +1,8 @@
-import 'dart:async';
+﻿import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../controller/button_check_controller.dart';
+import 'package:my_havenly_application/features/auth/controllers/button_check_controller.dart';
 
 class ButtonCheck extends StatelessWidget {
   ButtonCheck({this.iconOff, this.iconOn, this.text});

@@ -1,195 +1,196 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
-import '../../controller/register_controller.dart';
-import '../widget/button_check.dart';
-import '../widget/costum_button.dart';
-import '../widget/costum_field.dart';
-import '../widget/date_time_widget.dart';
-import '../widget/image_picker_widget.dart';
-import 'login_screen.dart';
+import 'package:my_havenly_application/core/utils/app_colors.dart';
+import 'package:my_havenly_application/features/auth/controllers/register_controller.dart';
+import 'package:my_havenly_application/features/auth/view/widget/costum_button.dart';
+import 'package:my_havenly_application/features/auth/view/widget/costum_field.dart';
+import 'package:my_havenly_application/features/auth/view/widget/date_time_widget.dart';
+import 'package:my_havenly_application/features/auth/view/widget/image_picker_widget.dart';
+import 'package:my_havenly_application/features/auth/view/screens/login_screen.dart';
 
 class RegisterScreen extends StatelessWidget {
-  RegisterScreen({super.key});
+  const RegisterScreen({super.key});
 
   @override
-  //final DateController dateController = Get.put(DateController());
-  final RegisterController registerController = Get.find<RegisterController>();
-
   Widget build(BuildContext context) {
+    final registerController = Get.find<RegisterController>();
+
     return Scaffold(
-      backgroundColor: const Color(0xff001733),
+      backgroundColor: AppColors.primaryNavy,
       body: ListView(
-        padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
+        padding: EdgeInsets.symmetric(vertical: 40.h, horizontal: 20.w),
         children: [
-          Center(
-            child: Column(
-              children: [
-                SizedBox(height: 40),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.blue, width: 2),
-                    borderRadius: BorderRadius.circular(18),
-                    color: Colors.white,
-                  ),
-                  padding: const EdgeInsets.all(20),
+          Column(
+            children: [
+              SizedBox(height: 20.h),
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: AppColors.accentBlue, width: 2.w),
+                  borderRadius: BorderRadius.circular(18.r),
+                  color: AppColors.cardColor,
+                ),
+                padding: EdgeInsets.symmetric(vertical: 6.h, horizontal: 18),
+                child: SafeArea(
                   child: Column(
                     children: [
                       Text(
                         'Create Account'.tr,
                         style: TextStyle(
-                          fontSize: 24,
-                          color: Color(0xff001733),
+                          fontSize: 28.sp,
+                          color: AppColors.textPrimary,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-
-                      const SizedBox(height: 15),
-
+                      SizedBox(height: 12.h),
                       Row(
                         children: [
                           Expanded(
-                            child: CostumField(
-                              controller:
-                                  registerController.firstNameController,
-                              //  text: 'First Name',
-                              labelText: 'First Name'.tr,
-                              width: 175,
-                              alignment: Alignment.centerLeft,
-                            ),
-                          ),
-
-                          Expanded(
-                            child: CostumField(
-                              controller: registerController.lastNameController,
-                              // text: 'Last Name',
-                              labelText: 'Last Name'.tr,
-                              width: 175,
-                              alignment: Alignment.centerRight,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 10),
-                      CostumField(
-                        controller: registerController.usernameController,
-                        labelText: 'Username'.tr,
-                      ),
-                      const SizedBox(height: 10),
-                      CostumField(
-                        controller: registerController.phoneController,
-                        labelText: 'Phone Number'.tr,
-                      ),
-                      const SizedBox(height: 10),
-
-                      CostumField(
-                        controller: registerController.passwordController,
-                        labelText: 'Password'.tr,
-                        isPassword: true,
-                      ),
-                      const SizedBox(height: 10),
-                      CostumField(
-                        controller:
-                            registerController.confirmedPasswordController,
-                        labelText: 'Confirmed Password'.tr,
-                        isPassword: true,
-                      ),
-
-                      DateTimeWidget(),
-                      SizedBox(height: 10),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child: Container(
-                              margin: const EdgeInsets.only(right: 5),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: const Color(0xffE0E4EB),
-                              ),
-                              child: ImagePickerWidget(
-                                text: 'ID image'.tr,
-                                onImagePicked: (path) {
-                                  registerController.idImagePath.value = path;
-                                },
+                            child: Obx(
+                              () => CostumField(
+                                controller:
+                                    registerController.firstNameController,
+                                labelText: 'First Name'.tr,
+                                errorText:
+                                    registerController.firstNameError.value,
                               ),
                             ),
                           ),
-
+                          SizedBox(width: 8.w),
                           Expanded(
-                            child: Container(
-                              margin: const EdgeInsets.only(left: 5),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: const Color(0xffE0E4EB),
-                              ),
-                              child: ImagePickerWidget(
-                                text: 'personal photo'.tr,
-                                onImagePicked: (path) {
-                                  registerController.personalPhotoPath.value =
-                                      path;
-                                },
+                            child: Obx(
+                              () => CostumField(
+                                controller:
+                                    registerController.lastNameController,
+                                labelText: 'Last Name'.tr,
+                                errorText:
+                                    registerController.lastNameError.value,
                               ),
                             ),
                           ),
                         ],
                       ),
-
-                      // Row(
-                      //   children: [
-                      //     ButtonCheck(
-                      //       text: 'Agree with',
-                      //       iconOff: const Icon(Icons.radio_button_unchecked),
-                      //       iconOn: const Icon(Icons.radio_button_checked),
-                      //     ),
-                      //     const Text(
-                      //       ' Terms and Condition',
-                      //       style: TextStyle(
-                      //         fontSize: 10,
-                      //         color: Colors.blue,
-                      //         decoration: TextDecoration.underline,
-                      //       ),
-                      //     ),
-                      //   ],
-                      // ),
-                      const SizedBox(height: 15),
-
-                      Obx(() {
-                        return CostumButton(
+                      SizedBox(height: 8.h),
+                      Obx(
+                        () => CostumField(
+                          controller: registerController.usernameController,
+                          labelText: 'Username'.tr,
+                          errorText: registerController.usernameError.value,
+                        ),
+                      ),
+                      SizedBox(height: 8.h),
+                      Obx(
+                        () => CostumField(
+                          controller: registerController.phoneController,
+                          labelText: 'Phone Number'.tr,
+                          keyboardType: TextInputType.phone,
+                          errorText: registerController.phoneError.value,
+                        ),
+                      ),
+                      SizedBox(height: 8.h),
+                      Obx(
+                        () => CostumField(
+                          controller: registerController.passwordController,
+                          labelText: 'Password'.tr,
+                          isPassword: true,
+                          errorText: registerController.passwordError.value,
+                        ),
+                      ),
+                      SizedBox(height: 8.h),
+                      Obx(
+                        () => CostumField(
+                          controller:
+                              registerController.confirmedPasswordController,
+                          labelText: 'Confirmed Password'.tr,
+                          isPassword: true,
+                          errorText:
+                              registerController.confirmedPasswordError.value,
+                        ),
+                      ),
+                      SizedBox(height: 8.h),
+                      const DateTimeWidget(),
+                      SizedBox(height: 8.h),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Obx(
+                                  () => ImagePickerWidget(
+                                    text: 'ID image'.tr,
+                                    errorText:
+                                        registerController.idImageError.value,
+                                    onImagePicked: (path) {
+                                      registerController.idImagePath.value =
+                                          path;
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(width: 8.w),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Obx(
+                                  () => ImagePickerWidget(
+                                    text: 'personal photo'.tr,
+                                    errorText: registerController
+                                        .personalPhotoError
+                                        .value,
+                                    onImagePicked: (path) {
+                                      registerController
+                                              .personalPhotoPath
+                                              .value =
+                                          path;
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 24.h),
+                      Obx(
+                        () => CostumButton(
                           text: registerController.isLoading.value
                               ? 'Loading...'.tr
                               : 'Sign up'.tr,
                           Width: double.infinity,
-                          color: const Color(0xff024DAA),
+                          color: AppColors.accentBlue,
                           onTap: registerController.isLoading.value
                               ? null
                               : () {
                                   registerController.registerUser();
                                 },
-                        );
-                      }),
-
-                      const SizedBox(height: 15),
-
+                        ),
+                      ),
+                      SizedBox(height: 24.h),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
                             "Already have an account?".tr,
                             style: TextStyle(
-                              color: Color(0xff001733),
-                              fontSize: 16,
+                              color: AppColors.textPrimary,
+                              fontSize: 16.sp,
                             ),
                           ),
+                          SizedBox(width: 4.w),
                           GestureDetector(
                             onTap: () {
-                              Get.off(LoginScreen());
+                              Get.off(() => const LoginScreen());
                             },
                             child: Text(
                               'Login'.tr,
                               style: TextStyle(
-                                color: Colors.blue,
-                                fontSize: 16,
+                                color: AppColors.accentBlue,
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.w600,
                                 decoration: TextDecoration.underline,
                               ),
                             ),
@@ -199,8 +200,8 @@ class RegisterScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ],
       ),

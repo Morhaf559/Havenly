@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:my_havenly_application/core/utils/app_colors.dart';
 import 'package:my_havenly_application/features/onboarding/controller/onboarding_controller.dart';
 import 'package:my_havenly_application/features/onboarding/view/widgets/onboarding_page.dart';
 import 'package:my_havenly_application/features/onboarding/view/widgets/onboarding_indicator.dart';
@@ -9,10 +11,19 @@ class OnboardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(OnboardingController());
+    OnboardingController controller;
+    if (Get.isRegistered<OnboardingController>()) {
+      try {
+        controller = Get.find<OnboardingController>();
+      } catch (e) {
+        controller = Get.put(OnboardingController());
+      }
+    } else {
+      controller = Get.put(OnboardingController());
+    }
 
     return Scaffold(
-      backgroundColor: const Color(0xff001733),
+      backgroundColor: AppColors.primaryNavy,
       body: SafeArea(
         child: Column(
           children: [
@@ -20,14 +31,14 @@ class OnboardingScreen extends StatelessWidget {
             Align(
               alignment: Alignment.topRight,
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: EdgeInsets.all(16.w),
                 child: TextButton(
                   onPressed: controller.skipOnboarding,
-                  child: const Text(
-                    'Skip',
+                  child: Text(
+                    'Skip'.tr,
                     style: TextStyle(
                       color: Colors.white70,
-                      fontSize: 16,
+                      fontSize: 16.sp,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -35,23 +46,28 @@ class OnboardingScreen extends StatelessWidget {
               ),
             ),
 
-            // Page View
             Expanded(
               child: PageView(
                 controller: controller.pageController,
                 onPageChanged: controller.onPageChanged,
-                children: const [
+                children: [
                   OnboardingPage(
-                    image: Icons.search,
-                    title: 'Find Your Dream Home',
+                    image: Icons.home_work_outlined,
+                    title: 'Explore Amazing Properties'.tr,
                     description:
-                        'Browse through thousands of properties and find the perfect place that matches your lifestyle and budget.',
+                        'Browse through thousands of verified properties. Find apartments, villas, and houses that match your preferences and budget.'.tr,
                   ),
                   OnboardingPage(
-                    image: Icons.verified_user,
-                    title: 'Verified & Trusted',
+                    image: Icons.calendar_today_outlined,
+                    title: 'Easy Reservations'.tr,
                     description:
-                        'All properties are verified and trusted. Get detailed information and connect with verified property owners.',
+                        'Book your favorite property with ease. Manage your reservations, track requests, and modify bookings all in one place.'.tr,
+                  ),
+                  OnboardingPage(
+                    image: Icons.favorite_outline,
+                    title: 'Save & Organize'.tr,
+                    description:
+                        'Save your favorite properties, receive notifications about updates, manage your profile, and keep everything organized.'.tr,
                   ),
                 ],
               ),
@@ -59,38 +75,37 @@ class OnboardingScreen extends StatelessWidget {
 
             // Page Indicator
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 24.0),
+              padding: EdgeInsets.symmetric(vertical: 24.h),
               child: Obx(
                 () => OnboardingIndicator(
                   currentIndex: controller.currentPage.value,
-                  totalPages: 2,
+                  totalPages: 3,
                 ),
               ),
             ),
 
-            // Navigation Button
             Padding(
-              padding: const EdgeInsets.all(24.0),
+              padding: EdgeInsets.all(24.w),
               child: Obx(
                 () => SizedBox(
                   width: double.infinity,
-                  height: 56,
+                  height: 56.h,
                   child: ElevatedButton(
                     onPressed: controller.nextPage,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xff024DAA),
+                      backgroundColor: AppColors.accentBlue,
                       foregroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(12.r),
                       ),
                       elevation: 0,
                     ),
                     child: Text(
-                      controller.currentPage.value == 1
-                          ? 'Get Started'
-                          : 'Next',
-                      style: const TextStyle(
-                        fontSize: 18,
+                      controller.currentPage.value == 2
+                          ? 'Get Started'.tr
+                          : 'Next'.tr,
+                      style: TextStyle(
+                        fontSize: 18.sp,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -104,4 +119,3 @@ class OnboardingScreen extends StatelessWidget {
     );
   }
 }
-

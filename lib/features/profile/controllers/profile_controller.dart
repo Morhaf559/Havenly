@@ -1,94 +1,79 @@
-// Controller: Profile Controller using GetX - جميع منطق الأزرار والتفاعلات
-import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import '../models/property.dart';
+import 'package:get/get.dart';
+import 'package:my_havenly_application/core/controllers/base_controller.dart';
+import 'package:my_havenly_application/core/controllers/auth_state_controller.dart';
+import 'package:my_havenly_application/core/models/user_model.dart';
+import 'package:my_havenly_application/core/routes/app_routes.dart';
+import 'package:my_havenly_application/features/profile/repositories/profile_repository.dart';
 
-class ProfileController extends GetxController {
-  // Reactive variables using GetX
-  RxInt selectedTab = 0.obs; // 0 = Properties, 1 = Archive
-  RxInt selectedBottomNav = 3.obs; // 3 = Reserved (selected by default)
+class ProfileController extends BaseController {
+  final ProfileRepository _repository = Get.find<ProfileRepository>();
+  final AuthStateController _authStateController =
+      Get.find<AuthStateController>();
 
-  // Profile Data
-  final String profileName = 'Salloum';
-  final String profileRole = 'Costumer';
-  final String profileImageUrl = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200';
-  final double nameFontSize = 30;
-  final double roleFontSize = 20;
-  final Color nameColor = const Color(0xFF000000);
-  final Color roleColor = const Color(0xFF303030);
+  final Rx<UserModel?> user = Rx<UserModel?>(null);
 
-  // Properties list
-  final List<Property> properties = [
-    Property(
-      name: 'Julia House',
-      location: 'Damascus, Syria',
-      imageUrl: 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=400',
-    ),
-    Property(
-      name: 'Fulla House',
-      location: 'Damascus, Syria',
-      imageUrl: 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=400',
-    ),
-  ];
-
-  // Navigation Methods
-  void setSelectedTab(int index) {
-    selectedTab.value = index;
+  @override
+  void onInit() {
+    super.onInit();
+    user.value = _authStateController.user;
+    ever(_authStateController.isLoggedInRx, (bool isLoggedIn) {
+      if (isLoggedIn) {
+        user.value = _authStateController.user;
+      } else {
+        user.value = null;
+      }
+    });
+    ever(_authStateController.userRx, (UserModel? updatedUser) {
+      if (updatedUser != null) {
+        user.value = updatedUser;
+      }
+    });
+    loadProfile();
   }
 
-  void setSelectedBottomNav(int index) {
-    selectedBottomNav.value = index;
+  Future<void> loadProfile() async {
+    try {
+      setLoading(true);
+      clearError();
+
+      final profile = await _repository.getProfile();
+
+      user.value = profile;
+
+      _authStateController.updateUser(profile);
+    } catch (e) {
+      handleError(e, title: 'Error loading profile');
+    } finally {
+      setLoading(false);
+    }
   }
 
-  // Button Actions
-  void onChatPressed(Property property) {
-    debugPrint('Chat pressed for: ${property.name}');
-
+  @override
+  Future<void> refresh() async {
+    await loadProfile();
   }
 
-  void onMoreOptionsPressed(Property property) {
-    debugPrint('More options pressed for: ${property.name}');
-
+  Future<void> refreshProfile() async {
+    await loadProfile();
   }
 
-  void onEditPressed() {
-    debugPrint('Edit pressed');
-
+  void navigateToEdit() {
+    Get.toNamed(AppRoutes.profileEdit);
   }
 
-  void onBackPressed() {
-    debugPrint('Back button pressed');
-    // Navigation logic using GetX
-    Get.back();
-    // Add any additional logic here (e.g., save data, show confirmation dialog, etc.)
-  }
-
-  // Bottom Navigation Bar Actions
-  void onHomePressed() {
-    debugPrint('Home button pressed');
-    setSelectedBottomNav(0);
-    // Add your home navigation logic here
-    // Example: Navigate to home screen, reset state, etc.
-  }
-
-  void onExplorePressed() {
-    debugPrint('Explore button pressed');
-    setSelectedBottomNav(1);
-    // Add your explore navigation logic here
-    // Example: Navigate to explore screen, search, etc.
-  }
-
-  void onFavoritePressed() {
-    debugPrint('Favorite button pressed');
-    setSelectedBottomNav(2);
-    // Add your favorite navigation logic here
-    // Example: Navigate to favorites screen, show saved items, etc.
-  }
-
-  void onReservedPressed() {
-    debugPrint('Reserved button pressed');
-    setSelectedBottomNav(3);
-    // Add your reserved navigation logic here
-    // Example: Navigate to reserved screen, show reserved items, etc.
+  Future<void> logout() async {
+    try {
+      final authStateController = Get.find<AuthStateController>();
+      await authStateController.logout();
+    } catch (e) {
+      Get.snackbar(
+        'Error'.tr,
+        'Failed to logout: ${e.toString()}'.tr,
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red,
+        colorText: Colors.white,
+      );
+    }
   }
 }

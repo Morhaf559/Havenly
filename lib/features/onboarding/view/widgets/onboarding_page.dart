@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_havenly_application/core/utils/app_colors.dart';
 
 class OnboardingPage extends StatelessWidget {
   final IconData image;
@@ -15,44 +17,48 @@ class OnboardingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 32.0),
+      padding: EdgeInsets.symmetric(horizontal: 32.w),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           // Illustration/Icon
           Container(
-            width: 200,
-            height: 200,
+            width: 200.w,
+            height: 200.h,
             decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.1),
+              color: Colors.white.withOpacity(0.15),
               shape: BoxShape.circle,
+              border: Border.all(
+                color: Colors.white.withOpacity(0.3),
+                width: 2.w,
+              ),
             ),
             child: Icon(
               image,
-              size: 100,
+              size: 100.sp,
               color: Colors.white,
             ),
           ),
-          const SizedBox(height: 48),
+          SizedBox(height: 48.h),
           // Title
           Text(
             title,
             textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 28,
+            style: TextStyle(
+              fontSize: 28.sp,
               fontWeight: FontWeight.bold,
               color: Colors.white,
               height: 1.2,
             ),
           ),
-          const SizedBox(height: 24),
+          SizedBox(height: 24.h),
           // Description
           Text(
             description,
             textAlign: TextAlign.center,
             style: TextStyle(
-              fontSize: 16,
-              color: Colors.white.withOpacity(0.8),
+              fontSize: 16.sp,
+              color: Colors.white.withOpacity(0.9),
               height: 1.5,
             ),
           ),

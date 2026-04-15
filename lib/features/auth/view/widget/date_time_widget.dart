@@ -1,44 +1,60 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
-import '../../controller/date_controller.dart';
+import 'package:my_havenly_application/core/utils/app_colors.dart';
+import 'package:my_havenly_application/features/auth/controllers/date_controller.dart';
 
 class DateTimeWidget extends StatelessWidget {
-  DateTimeWidget({super.key});
-  final DateController controller = Get.put(DateController());
+  const DateTimeWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<DateController>();
+
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           'Date of birth'.tr,
           style: TextStyle(
-            fontSize: 16,
+            fontSize: 16.sp,
             fontWeight: FontWeight.bold,
-            color: Color(0xff001733),
+            color: AppColors.textPrimary,
           ),
         ),
-        const SizedBox(height: 8),
-
+        SizedBox(height: 8.h),
         Obx(
           () => MaterialButton(
             onPressed: () {
               controller.pickDate(context);
             },
-            color: Color(0xffE0E4EB),
-            textColor: Color(0xff001733),
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+            color: AppColors.grey100,
+            textColor: AppColors.textPrimary,
+            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 12.h),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(10.r),
             ),
-
-            child: Text(
-              '${controller.selectedDate.value.day.toString().padLeft(2, '0')}/'
-              '${controller.selectedDate.value.month.toString().padLeft(2, '0')}/'
-              '${controller.selectedDate.value.year}',
-              style: const TextStyle(fontSize: 18, letterSpacing: 1.2),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.calendar_today,
+                  size: 18.sp,
+                  color: AppColors.textPrimary,
+                ),
+                SizedBox(width: 8.w),
+                Text(
+                  controller.selectedDate.value != null
+                      ? '${controller.selectedDate.value!.day.toString().padLeft(2, '0')}/'
+                          '${controller.selectedDate.value!.month.toString().padLeft(2, '0')}/'
+                          '${controller.selectedDate.value!.year}'
+                      : 'Select Date'.tr,
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    letterSpacing: 1.2,
+                  ),
+                ),
+              ],
             ),
           ),
         ),

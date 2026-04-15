@@ -1,8 +1,9 @@
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 
-import '../../Binding/auth_binding.dart';
+import '../../bindings/auth_binding.dart';
 import 'login_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -55,7 +56,7 @@ class WelcomeScreen extends StatelessWidget {
               ),
               SizedBox(height: 10),
               Text(
-                'Unlock a world of comfort & control',
+                'Unlock a world of comfort & control'.tr,
                 style: TextStyle(fontSize: 14, color: Color(0xffE0B251)),
               ),
               SizedBox(height: 150),
@@ -68,7 +69,7 @@ class WelcomeScreen extends StatelessWidget {
                   child: Container(
                     child: Center(
                       child: Text(
-                        'START YOUR JOURNEY',
+                        'Start Your Journey'.tr.toUpperCase(),
                         style: TextStyle(
                           fontSize: 18,
                           color: Color(0xffAA771C),

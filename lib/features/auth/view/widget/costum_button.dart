@@ -1,41 +1,55 @@
-//import 'dart:ffi';
-
-import 'package:flutter/material.dart';
+﻿import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CostumButton extends StatelessWidget {
-  CostumButton({this.onTap, this.text, this.Width, this.color, this.image});
-  VoidCallback? onTap;
-  String? text;
-  Color? color;
-  double? Width;
-  String? image;
+  const CostumButton({
+    super.key,
+    this.onTap,
+    this.text,
+    this.Width,
+    this.color,
+    this.image,
+  });
+
+  final VoidCallback? onTap;
+  final String? text;
+  final Color? color;
+  final double? Width;
+  final String? image;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: EdgeInsets.all(8.w),
       child: GestureDetector(
         onTap: onTap,
         child: Container(
+          width: Width,
+          height: 50.h,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(24.r),
+            color: onTap == null
+                ? color?.withOpacity(0.6)
+                : color,
+            border: Border.all(
+              color: Colors.blueGrey.withOpacity(0.3),
+              width: 1.w,
+            ),
+          ),
           child: Center(
             child: text != null
                 ? Text(
                     text!,
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 18.sp,
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
                   )
-                : Container(height: 28, child: Image.asset('$image')),
-          ),
-
-          width: Width,
-          height: 50,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(24),
-            color: color,
-            border: Border.all(color: Colors.blueGrey, width: 1),
+                : SizedBox(
+                    height: 28.h,
+                    child: Image.asset(image ?? ''),
+                  ),
           ),
         ),
       ),

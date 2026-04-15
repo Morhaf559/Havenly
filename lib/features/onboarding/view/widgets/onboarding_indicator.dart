@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_havenly_application/core/utils/app_colors.dart';
 
 class OnboardingIndicator extends StatelessWidget {
   final int currentIndex;
@@ -17,14 +19,14 @@ class OnboardingIndicator extends StatelessWidget {
       children: List.generate(
         totalPages,
         (index) => Container(
-          width: currentIndex == index ? 32 : 8,
-          height: 8,
-          margin: const EdgeInsets.symmetric(horizontal: 4),
+          width: currentIndex == index ? 32.w : 8.w,
+          height: 8.h,
+          margin: EdgeInsets.symmetric(horizontal: 4.w),
           decoration: BoxDecoration(
             color: currentIndex == index
-                ? const Color(0xff024DAA)
+                ? AppColors.accentBlue
                 : Colors.white.withOpacity(0.3),
-            borderRadius: BorderRadius.circular(4),
+            borderRadius: BorderRadius.circular(4.r),
           ),
         ),
       ),

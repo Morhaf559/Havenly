@@ -1,0 +1,4228 @@
+{
+	"info": {
+		"_postman_id": "f8a242d0-35a8-43e6-91fb-9fc4fe062bf7",
+		"name": "Apartment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50725788",
+		"_collection_link": "https://faisal-hendiah-1385465.postman.co/workspace/Appartment~73775b68-3f42-4f27-a57c-92933782d039/collection/50725788-f8a242d0-35a8-43e6-91fb-9fc4fe062bf7?action=share&source=collection_link&creator=50725788"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Parse JSON response\r",
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"// Check if token exists in response\r",
+									"let token = jsonData?.data?.token;\r",
+									"if (token) {\r",
+									"    pm.environment.set(\"token\", token);\r",
+									"    console.log(\"Token saved to environment:\", token);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phone\": \"963974516228\",\r\n    \"password\": \"123456789\",\r\n    \"password_confirmation\": \"123456789\",\r\n    \"first_name\": \"first name\",\r\n    \"last_name\": \"last name\",\r\n    // \"username\": \"username5\",\r\n    \"date_of_birth\": \"2025-12-08\",\r\n    \"id_photo\": 1, \r\n    \"personal_photo\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"phone\": \"963964587365\",\r\n    \"password\": \"123456789\",\r\n    \"password_confirmation\": \"123456789\",\r\n    \"first_name\": \"first name\",\r\n    \"last_name\": \"last name\",\r\n    \"username\": \"username1\",\r\n    \"date_of_birth\": \"2025-12-08\",\r\n    \"id_photo\": 5, \r\n    \"personal_photo\": 6\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/register",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Dec 2025 22:52:21 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"token\": \"2|p1UCPlc9ULigTF2W9HYApJyul54cj0GS3EWLoQR5951a9121\",\n        \"user\": {\n            \"id\": 4,\n            \"phone\": \"963964587365\",\n            \"first_name\": \"first name\",\n            \"last_name\": \"last name\",\n            \"username\": \"username1\",\n            \"date_of_birth\": \"2025-12-08\",\n            \"role_id\": null,\n            \"id_photo\": 5,\n            \"personal_photo\": 6,\n            \"status\": null\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Parse JSON response\r",
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"// Check if token exists in response\r",
+									"let token = jsonData?.data?.token;\r",
+									"if (token) {\r",
+									"    pm.environment.set(\"token\", token);\r",
+									"    console.log(\"Token saved to environment:\", token);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept-Language",
+								"value": "ar",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phone\": \"963944068317\",\r\n    \"password\": \"123456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"phone\": \"963964587965\",\r\n    \"password\": \"123456789\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/auth/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Dec 2025 23:04:13 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"token\": \"7|z9kIQCdrv9akvAGTSBLDfiDvMykBv4zncSFpHTC1ba402b34\",\n        \"user\": {\n            \"id\": 5,\n            \"phone\": \"963964587965\",\n            \"first_name\": \"first name\",\n            \"last_name\": \"last name\",\n            \"username\": \"username2\",\n            \"date_of_birth\": \"2025-12-08\",\n            \"role\": \"user\",\n            \"id_photo\": 5,\n            \"personal_photo\": 6,\n            \"status\": 2\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "me",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Parse JSON response\r",
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"// Check if token exists in response\r",
+									"if (jsonData.data.token) {\r",
+									"    pm.environment.set(\"token\", jsonData.data.token);\r",
+									"    console.log(\"Token saved to environment:\", jsonData.token);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/me",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "me",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/auth/me",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"auth",
+										"me"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Dec 2025 23:07:22 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 5,\n    \"phone\": \"963964587965\",\n    \"first_name\": \"first name\",\n    \"last_name\": \"last name\",\n    \"username\": \"username2\",\n    \"date_of_birth\": \"2025-12-08\",\n    \"role\": \"user\",\n    \"id_photo\": 5,\n    \"personal_photo\": 6,\n    \"status\": 2\n}"
+						}
+					]
+				},
+				{
+					"name": "update profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phone\": \"963944068317\",\r\n    \"first_name\": \"Hamza\",\r\n    \"last_name\": \"Attar\",\r\n    \"username\": \"admin\",\r\n    \"date_of_birth\": \"1995-05-15\",\r\n    \"role\": \"admin\",\r\n    \"id_photo\": null,\r\n    \"personal_photo\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/update-profile",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"update-profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Parse JSON response\r",
+									"let jsonData = pm.response.json();\r",
+									"\r",
+									"// Check if token exists in response\r",
+									"if (jsonData.data.token) {\r",
+									"    pm.environment.set(\"token\", jsonData.data.token);\r",
+									"    console.log(\"Token saved to environment:\", jsonData.token);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/auth/logout",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reset password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phone\": \"963944068317\",\r\n    \"password\": \"123456789\",\r\n    \"password_confirmation\": \"123456789\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/reset-password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"reset-password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "send otp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phone\": \"963944068317\",\r\n    \"otp\": \"12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/verify-otp",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"verify-otp"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "verify otp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"phone\": \"963944068317\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/send-otp",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"send-otp"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "media",
+			"item": [
+				{
+					"name": "show",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/media/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"media",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "store",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/pdf",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "medium",
+									"type": "file",
+									"src": "postman-cloud:///1f0d5ff0-718f-4be0-a220-dac6e00b51a3"
+								},
+								{
+									"key": "type",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "for",
+									"value": "personal-photo",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/media",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"media"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/pdf",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "medium",
+											"type": "file",
+											"src": "/C:/Users/ENG. HAMZA/Downloads/Features__Basic_style_Sheer__Opaque_Stretch_-removebg-preview.png"
+										},
+										{
+											"key": "type",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "for",
+											"value": "personal-photo",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/media",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"media"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Dec 2025 22:10:09 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 8,\n    \"name\": \"Features__Basic_style_Sheer__Opaque_Stretch_-removebg-preview.png\",\n    \"url\": \"http://127.0.0.1:8000/storage/media/personal/photo/d9Mc2B8JaU114A4pJ5UW9twtZzCYLg8A0rXlhZAX.png\",\n    \"extension\": \"png\",\n    \"type\": 1,\n    \"for\": \"personal-photo\",\n    \"createdAt\": \"2025-12-10T22:10:09.000000Z\",\n    \"createdBy\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "store many",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "media[0][medium]",
+									"type": "file",
+									"src": "postman-cloud:///1f0e42b4-59eb-4140-b8e8-ef17144f1fd5"
+								},
+								{
+									"key": "media[0][type]",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "media[0][for]",
+									"value": "id-photo",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/media/store-many",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"media",
+								"store-many"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "error unauthentication",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "media[0][medium]",
+											"type": "file",
+											"src": "/C:/Users/ENG. HAMZA/Downloads/facebook (1).png"
+										},
+										{
+											"key": "media[0][type]",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "media[0][for]",
+											"value": "id-photo",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/media/store-many",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"media",
+										"store-many"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Host",
+									"value": "127.0.0.1:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.2.12"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 10 Dec 2025 22:20:31 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Unauthenticated.\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "App",
+			"item": [
+				{
+					"name": "apartment",
+					"item": [
+						{
+							"name": "index",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "ar",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/apartment",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"apartment"
+									],
+									"query": [
+										{
+											"key": "keyword",
+											"value": "الطيبة",
+											"disabled": true
+										},
+										{
+											"key": "filters[0][name]",
+											"value": "governorate",
+											"disabled": true
+										},
+										{
+											"key": "filters[0][operation]",
+											"value": "eq",
+											"disabled": true
+										},
+										{
+											"key": "filters[0][value]",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "orders[0][name]",
+											"value": "price",
+											"disabled": true
+										},
+										{
+											"key": "orders[0][direction]",
+											"value": "asc",
+											"disabled": true
+										},
+										{
+											"key": "perPage",
+											"value": "10",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "1",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Accept-Language",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/apartment?filters[0][name]=governorate&filters[0][operation]=eq&filters[0][value]=1&perPage=2&page=1",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"apartment"
+											],
+											"query": [
+												{
+													"key": "keyword",
+													"value": "الطيبة",
+													"disabled": true
+												},
+												{
+													"key": "filters[0][name]",
+													"value": "governorate"
+												},
+												{
+													"key": "filters[0][operation]",
+													"value": "eq"
+												},
+												{
+													"key": "filters[0][value]",
+													"value": "1"
+												},
+												{
+													"key": "filters[1][name]",
+													"value": "title",
+													"disabled": true
+												},
+												{
+													"key": "filters[1][operation]",
+													"value": "eq",
+													"disabled": true
+												},
+												{
+													"key": "filters[1][value]",
+													"value": "شقة جيدة",
+													"disabled": true
+												},
+												{
+													"key": "perPage",
+													"value": "2"
+												},
+												{
+													"key": "page",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.12"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 29 Dec 2025 20:24:43 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 3,\n            \"title\": \"شقة جيدة\",\n            \"description\": \"شقة جديدة\",\n            \"price\": \"300.00\",\n            \"currency\": \"$\",\n            \"rate\": 0,\n            \"governorate\": \"دمشق\",\n            \"city\": \"زاكية\",\n            \"address\": \"دمشق\",\n            \"status\": \"available\",\n            \"number_of_room\": 4,\n            \"number_of_bathroom\": 2,\n            \"area\": 160,\n            \"floor\": 1,\n            \"created_at\": \"2025-12-29\"\n        },\n        {\n            \"id\": 2,\n            \"title\": \"شقة جيدة\",\n            \"description\": \"شقة جديدة\",\n            \"price\": \"300.00\",\n            \"currency\": \"$\",\n            \"rate\": 0,\n            \"governorate\": \"دمشق\",\n            \"city\": \"زاكية\",\n            \"address\": \"دمشق\",\n            \"status\": \"available\",\n            \"number_of_room\": 4,\n            \"number_of_bathroom\": 2,\n            \"area\": 160,\n            \"floor\": 1,\n            \"created_at\": \"2025-12-29\"\n        },\n        {\n            \"id\": 1,\n            \"title\": \"شقة جيدة\",\n            \"description\": \"شقة جديدة\",\n            \"price\": \"300.00\",\n            \"currency\": \"$\",\n            \"rate\": 0,\n            \"governorate\": \"دمشق\",\n            \"city\": \"زاكية\",\n            \"address\": \"دمشق\",\n            \"status\": \"available\",\n            \"number_of_room\": 4,\n            \"number_of_bathroom\": 2,\n            \"area\": 160,\n            \"floor\": 1,\n            \"created_at\": \"2025-12-29\"\n        }\n    ],\n    \"page\": 0,\n    \"perPage\": 15,\n    \"lastPage\": 1,\n    \"total\": 3\n}"
+								}
+							]
+						},
+						{
+							"name": "get available now",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "ar",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/apartments/available",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"apartments",
+										"available"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Content-Type",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "Accept-Language",
+												"value": "ar",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/apartment?filters[0][name]=governorate&filters[0][operation]=eq&filters[0][value]=1&perPage=2&page=1",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"apartment"
+											],
+											"query": [
+												{
+													"key": "keyword",
+													"value": "الطيبة",
+													"disabled": true
+												},
+												{
+													"key": "filters[0][name]",
+													"value": "governorate"
+												},
+												{
+													"key": "filters[0][operation]",
+													"value": "eq"
+												},
+												{
+													"key": "filters[0][value]",
+													"value": "1"
+												},
+												{
+													"key": "filters[1][name]",
+													"value": "title",
+													"disabled": true
+												},
+												{
+													"key": "filters[1][operation]",
+													"value": "eq",
+													"disabled": true
+												},
+												{
+													"key": "filters[1][value]",
+													"value": "شقة جيدة",
+													"disabled": true
+												},
+												{
+													"key": "perPage",
+													"value": "2"
+												},
+												{
+													"key": "page",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.12"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 29 Dec 2025 20:24:43 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 3,\n            \"title\": \"شقة جيدة\",\n            \"description\": \"شقة جديدة\",\n            \"price\": \"300.00\",\n            \"currency\": \"$\",\n            \"rate\": 0,\n            \"governorate\": \"دمشق\",\n            \"city\": \"زاكية\",\n            \"address\": \"دمشق\",\n            \"status\": \"available\",\n            \"number_of_room\": 4,\n            \"number_of_bathroom\": 2,\n            \"area\": 160,\n            \"floor\": 1,\n            \"created_at\": \"2025-12-29\"\n        },\n        {\n            \"id\": 2,\n            \"title\": \"شقة جيدة\",\n            \"description\": \"شقة جديدة\",\n            \"price\": \"300.00\",\n            \"currency\": \"$\",\n            \"rate\": 0,\n            \"governorate\": \"دمشق\",\n            \"city\": \"زاكية\",\n            \"address\": \"دمشق\",\n            \"status\": \"available\",\n            \"number_of_room\": 4,\n            \"number_of_bathroom\": 2,\n            \"area\": 160,\n            \"floor\": 1,\n            \"created_at\": \"2025-12-29\"\n        },\n        {\n            \"id\": 1,\n            \"title\": \"شقة جيدة\",\n            \"description\": \"شقة جديدة\",\n            \"price\": \"300.00\",\n            \"currency\": \"$\",\n            \"rate\": 0,\n            \"governorate\": \"دمشق\",\n            \"city\": \"زاكية\",\n            \"address\": \"دمشق\",\n            \"status\": \"available\",\n            \"number_of_room\": 4,\n            \"number_of_bathroom\": 2,\n            \"area\": 160,\n            \"floor\": 1,\n            \"created_at\": \"2025-12-29\"\n        }\n    ],\n    \"page\": 0,\n    \"perPage\": 15,\n    \"lastPage\": 1,\n    \"total\": 3\n}"
+								}
+							]
+						},
+						{
+							"name": "store apartment",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "ar",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": {\"en\": \"apartment\", \"ar\": \"شقة جيدة\"},\r\n    \"description\": {\"en\": \"new apartment\", \"ar\": \"شقة جديدة\"},\r\n    \"price\": \"300.00\",\r\n    \"currency\": \"$\",\r\n    \"governorate\": 1,\r\n    \"city\":  {\"en\": \"zakia\", \"ar\": \"زاكية\"},\r\n    \"address\":  {\"en\": \"damas\", \"ar\": \"دمشق\"},\r\n    \"number_of_room\": \"4\",\r\n    \"number_of_bathroom\": \"2\",\r\n    \"area\": \"160\",\r\n    \"floor\": \"1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/apartment/",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"apartment",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show apartment",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "ar",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{baseUrl}}/apartment/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"apartment",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "modify apartment",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"title\": {\"en\": \"new test apartment\", \"ar\": \"اختبار\"},\r\n   \"description\": {\r\n        \"en\": \"new apartment\",\r\n        \"ar\": \"شقة جديدة\"\r\n    },\r\n     \"governorate\": 6,\r\n     \"address\": {\r\n        \"en\": \"damas\",\r\n        \"ar\": \"دمشق\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/apartment/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"apartment",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete apartment",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{baseUrl}}/apartment/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"apartment",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "apartment photo",
+					"item": [
+						{
+							"name": "store",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "ar",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "media[0][medium]",
+											"type": "file",
+											"src": "/C:/Users/ASUS/Pictures/kitokide.jpeg"
+										},
+										{
+											"key": "media[0][type]",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "media[0][for]",
+											"value": "apartment-photo",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/apartment/:id/photo",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"apartment",
+										":id",
+										"photo"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get all",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "ar",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/apartment/:id/photo",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"apartment",
+										":id",
+										"photo"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "ar",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "media[0][medium]",
+											"type": "file",
+											"src": "/C:/Users/ASUS/Desktop/Apartment Reserving System.png"
+										},
+										{
+											"key": "media[0][type]",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "media[0][for]",
+											"value": "apartment-photo",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/apartment/:id/photo/1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"apartment",
+										":id",
+										"photo",
+										"1"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "set main photo",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "ar",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/apartment/:id/photo/5/main",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"apartment",
+										":id",
+										"photo",
+										"5",
+										"main"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get main photo",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "ar",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/apartment/:id/photo/main",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"apartment",
+										":id",
+										"photo",
+										"main"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Governorate",
+					"item": [
+						{
+							"name": "index",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/governorates",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"governorates"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Favorite",
+					"item": [
+						{
+							"name": "index",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "ar",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "media[0][medium]",
+											"type": "file",
+											"src": "postman-cloud:///1f0d5ff0-718f-4be0-a220-dac6e00b51a3"
+										},
+										{
+											"key": "media[0][type]",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "media[0][for]",
+											"value": "apartment-photo",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/favorites",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"favorites"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "store",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "ar",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "media[0][medium]",
+											"type": "file",
+											"src": "postman-cloud:///1f0d5ff0-718f-4be0-a220-dac6e00b51a3"
+										},
+										{
+											"key": "media[0][type]",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "media[0][for]",
+											"value": "apartment-photo",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/apartment/:id/favorite",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"apartment",
+										":id",
+										"favorite"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/apartment/:id/favorite",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"apartment",
+										":id",
+										"favorite"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Review",
+					"item": [
+						{
+							"name": "index",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "ar",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "media[0][medium]",
+											"type": "file",
+											"src": "postman-cloud:///1f0d5ff0-718f-4be0-a220-dac6e00b51a3"
+										},
+										{
+											"key": "media[0][type]",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "media[0][for]",
+											"value": "apartment-photo",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{baseUrl}}/apartment/review",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"apartment",
+										"review"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "store",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/apartment/review/?apartment_id=1&rate=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"apartment",
+										"review",
+										""
+									],
+									"query": [
+										{
+											"key": "apartment_id",
+											"value": "1"
+										},
+										{
+											"key": "rate",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/apartment/review/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"apartment",
+										"review",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/apartment/review/:id?rate=4",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"apartment",
+										"review",
+										":id"
+									],
+									"query": [
+										{
+											"key": "rate",
+											"value": "4"
+										}
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/apartment/review/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"apartment",
+										"review",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "reservation request",
+					"item": [
+						{
+							"name": "index",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"apartment_id\": 1,\r\n    \"start_date\": \"2026-2-22\",\r\n    \"end_date\": \"2026-2-28\",\r\n    \"note\": \"\"\r\n    \r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/reservation-requests?filters[0][name]=user_id&filters[0][operation]=eq&filters[0][value]=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"reservation-requests"
+									],
+									"query": [
+										{
+											"key": "filters[0][name]",
+											"value": "user_id"
+										},
+										{
+											"key": "filters[0][operation]",
+											"value": "eq"
+										},
+										{
+											"key": "filters[0][value]",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get send reservation request",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{baseUrl}}/reservation-requests/send",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"reservation-requests",
+										"send"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get receive reservation request",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{baseUrl}}/reservation-requests/receive",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"reservation-requests",
+										"receive"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "store",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"apartment_id\": 1,\r\n    \"start_date\": \"2026-3-22\",\r\n    \"end_date\": \"2026-3-28\",\r\n    \"note\": \"\"\r\n    \r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/reservation-requests",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"reservation-requests"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"apartment_id\": 1,\r\n    \"start_date\": \"2026-2-22\",\r\n    \"end_date\": \"2026-2-28\",\r\n    \"note\": \"\"\r\n    \r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/reservation-requests/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"reservation-requests",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"apartment_id\": 1,\r\n    \"start_date\": \"2026-03-5\",\r\n    \"end_date\": \"2026-03-25\",\r\n    \"note\": \"\"\r\n    \r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/reservation-requests/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"reservation-requests",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "cancel request",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"apartment_id\": 1,\r\n    \"start_date\": \"2026-03-5\",\r\n    \"end_date\": \"2026-03-25\",\r\n    \"note\": \"\"\r\n    \r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/reservation-requests/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"reservation-requests",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "reservation",
+					"item": [
+						{
+							"name": "index",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "ar",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{baseUrl}}/reservations",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"reservations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "ar",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/reservations/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"reservations",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get my reservations",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/reservations/my-reservations",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"reservations",
+										"my-reservations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get my apartment reservations Copy",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/reservations/my-apartment-reservations",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"reservations",
+										"my-apartment-reservations"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "accept reservation request",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "ar",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/reservation-requests/:id/accept",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"reservation-requests",
+										":id",
+										"accept"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "reject reservation request",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "ar",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/reservation-requests/:id/reject",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"reservation-requests",
+										":id",
+										"reject"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "reservation modification",
+					"item": [
+						{
+							"name": "index",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "ar",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{baseUrl}}/reservation-modifications",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"reservation-modifications"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "show",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "ar",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{baseUrl}}/reservation-modifications/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"reservation-modifications",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get  owner send modification",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/reservation-modifications/owner-send",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"reservation-modifications",
+										"owner-send"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get  tenant send modification",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/reservation-modifications/tenant-send",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"reservation-modifications",
+										"tenant-send"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get owner receive modify request",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/reservation-modifications/owner-receive",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"reservation-modifications",
+										"owner-receive"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get tenant receive modify request",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/reservation-modifications/tenant-receive",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"reservation-modifications",
+										"tenant-receive"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "modification request",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"type\": \"end_date\",\r\n    \"new_value\": \"2026-2-25\"\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/reservations/:id/modifications",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"reservations",
+										":id",
+										"modifications"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "accept modification",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{owner_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"end_date\": \"2026-2-25\"\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/modifications/:id/accept",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"modifications",
+										":id",
+										"accept"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "reject modification",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{owner_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "en",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"end_date\": \"2026-2-25\"\r\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/modifications/:id/reject",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"modifications",
+										":id",
+										"reject"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "notification",
+					"item": [
+						{
+							"name": "get my notifications",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/notifications",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"notifications"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/notifications",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"notifications"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.12"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 29 Dec 2025 19:57:12 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 500000,\n            \"title\": \"تسجيل مستخدم جديد\",\n            \"body\": \"تم تسجيل مستخدم جديد في النظام 11 first name.\",\n            \"type\": 2,\n            \"data\": {\n                \"item_id\": 11\n            },\n            \"read_at\": \"2025-12-29T19:56:37.000000Z\",\n            \"created_at\": \"2025-12-28T22:03:10.000000Z\",\n            \"updated_at\": \"2025-12-29T19:56:37.000000Z\"\n        }\n    ],\n    \"page\": 0,\n    \"perPage\": 15,\n    \"lastPage\": 1,\n    \"total\": 1\n}"
+								}
+							]
+						},
+						{
+							"name": "unread count",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/notifications/unread-count",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"notifications",
+										"unread-count"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/notifications/unread-count",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"notifications",
+												"unread-count"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.12"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 29 Dec 2025 19:57:17 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"unread_count\": 0\n}"
+								}
+							]
+						},
+						{
+							"name": "read",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/notifications/read",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"notifications",
+										"read"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Dashboard",
+			"item": [
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "index",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/users?filters[0][name]=status&filters[0][operation]=eq&filters[0][value]=2",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users"
+									],
+									"query": [
+										{
+											"key": "keyword",
+											"value": "hamza",
+											"disabled": true
+										},
+										{
+											"key": "filters[0][name]",
+											"value": "status"
+										},
+										{
+											"key": "filters[0][operation]",
+											"value": "eq"
+										},
+										{
+											"key": "filters[0][value]",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/users",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.12"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 20 Dec 2025 21:48:26 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 6,\n            \"phone\": \"963984587965\",\n            \"first_name\": \"first name\",\n            \"last_name\": \"last name\",\n            \"username\": \"username3\",\n            \"date_of_birth\": \"2025-12-08\",\n            \"role\": \"user\",\n            \"personal_photo\": {\n                \"id\": 6,\n                \"name\": \"Features__Basic_style_Sheer__Opaque_Stretch_-removebg-preview.png\",\n                \"url\": \"http://127.0.0.1:8000/storage/media/id/photo/8GCoiPiNbmxYLz0OLfGlmkjMbreIJMMLnWZpFEhg.png\"\n            },\n            \"status\": 2,\n            \"verified_at\": null\n        },\n        {\n            \"id\": 5,\n            \"phone\": \"963964587965\",\n            \"first_name\": \"first name\",\n            \"last_name\": \"last name\",\n            \"username\": \"username2\",\n            \"date_of_birth\": \"2025-12-08\",\n            \"role\": \"user\",\n            \"personal_photo\": {\n                \"id\": 6,\n                \"name\": \"Features__Basic_style_Sheer__Opaque_Stretch_-removebg-preview.png\",\n                \"url\": \"http://127.0.0.1:8000/storage/media/id/photo/8GCoiPiNbmxYLz0OLfGlmkjMbreIJMMLnWZpFEhg.png\"\n            },\n            \"status\": 2,\n            \"verified_at\": null\n        },\n        {\n            \"id\": 4,\n            \"phone\": \"963964587365\",\n            \"first_name\": \"first name\",\n            \"last_name\": \"last name\",\n            \"username\": \"username1\",\n            \"date_of_birth\": \"2025-12-08\",\n            \"role\": \"user\",\n            \"personal_photo\": {\n                \"id\": 6,\n                \"name\": \"Features__Basic_style_Sheer__Opaque_Stretch_-removebg-preview.png\",\n                \"url\": \"http://127.0.0.1:8000/storage/media/id/photo/8GCoiPiNbmxYLz0OLfGlmkjMbreIJMMLnWZpFEhg.png\"\n            },\n            \"status\": 2,\n            \"verified_at\": null\n        },\n        {\n            \"id\": 2,\n            \"phone\": \"963964587345\",\n            \"first_name\": \"first name\",\n            \"last_name\": \"last name\",\n            \"username\": \"username\",\n            \"date_of_birth\": \"2025-12-08\",\n            \"role\": \"user\",\n            \"personal_photo\": {\n                \"id\": 6,\n                \"name\": \"Features__Basic_style_Sheer__Opaque_Stretch_-removebg-preview.png\",\n                \"url\": \"http://127.0.0.1:8000/storage/media/id/photo/8GCoiPiNbmxYLz0OLfGlmkjMbreIJMMLnWZpFEhg.png\"\n            },\n            \"status\": 2,\n            \"verified_at\": null\n        },\n        {\n            \"id\": 1,\n            \"phone\": \"963944068317\",\n            \"first_name\": \"Hamza\",\n            \"last_name\": \"At\",\n            \"username\": \"admin\",\n            \"date_of_birth\": \"1995-05-15\",\n            \"role\": \"admin\",\n            \"personal_photo\": null,\n            \"status\": 2,\n            \"verified_at\": null\n        }\n    ],\n    \"page\": 0,\n    \"perPage\": 15,\n    \"lastPage\": 1,\n    \"total\": 5\n}"
+								}
+							]
+						},
+						{
+							"name": "store",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"phone\": \"963948325679\",\r\n    \"password\": \"12345\",\r\n    \"role\": \"user\",\r\n    \"first_name\": \"name\",\r\n    \"last_name\": \"last\",\r\n    \"date_of_birth\": \"2025-12-12\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "success",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"phone\": \"963948325679\",\r\n    \"password\": \"12345\",\r\n    \"role\": \"user\",\r\n    \"first_name\": \"name\",\r\n    \"last_name\": \"last\",\r\n    \"date_of_birth\": \"2025-12-12\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/users",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"users"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.12"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 20 Dec 2025 22:04:54 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 8,\n    \"phone\": \"963948325679\",\n    \"first_name\": \"name\",\n    \"last_name\": \"last\",\n    \"username\": null,\n    \"date_of_birth\": \"2025-12-12\",\n    \"role\": \"user\",\n    \"id_photo\": null,\n    \"personal_photo\": null,\n    \"status\": 1,\n    \"verified_at\": null\n}"
+								}
+							]
+						},
+						{
+							"name": "show",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/users/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "8"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"status\": 1,\r\n   \"role\": \"user\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/users/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "8"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/users/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"users",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id",
+											"value": "8"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "system",
+					"item": [
+						{
+							"name": "get data",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/system-data",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"system-data"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "notification",
+					"item": [
+						{
+							"name": "get my notifications",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/notifications",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"notifications"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/notifications",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"notifications"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.12"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 29 Dec 2025 19:57:12 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 500000,\n            \"title\": \"تسجيل مستخدم جديد\",\n            \"body\": \"تم تسجيل مستخدم جديد في النظام 11 first name.\",\n            \"type\": 2,\n            \"data\": {\n                \"item_id\": 11\n            },\n            \"read_at\": \"2025-12-29T19:56:37.000000Z\",\n            \"created_at\": \"2025-12-28T22:03:10.000000Z\",\n            \"updated_at\": \"2025-12-29T19:56:37.000000Z\"\n        }\n    ],\n    \"page\": 0,\n    \"perPage\": 15,\n    \"lastPage\": 1,\n    \"total\": 1\n}"
+								}
+							]
+						},
+						{
+							"name": "unread count",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/notifications/unread-count",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"notifications",
+										"unread-count"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/notifications/unread-count",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"notifications",
+												"unread-count"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Host",
+											"value": "127.0.0.1:8000"
+										},
+										{
+											"key": "Connection",
+											"value": "close"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.2.12"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Mon, 29 Dec 2025 19:57:17 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"unread_count\": 0\n}"
+								}
+							]
+						},
+						{
+							"name": "read",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/notifications/read",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"notifications",
+										"read"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					"pm.request.headers.add(\r",
+					"    {\r",
+					"        key: \"Accept\", \r",
+					"        value: \"application/json\"\r",
+					"    },\r",
+					"    {\r",
+					"        key: \"Content-Type\",\r",
+					"        value: \"application/json\"\r",
+					"    }\r",
+					");"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl\n",
+			"value": ""
+		},
+		{
+			"key": "token",
+			"value": ""
+		}
+	]
+}

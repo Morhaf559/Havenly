@@ -1,6 +1,6 @@
 {
-    "name": "havenly",
-    "short_name": "havenly",
+    "name": "my_havenly_application",
+    "short_name": "my_havenly_application",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

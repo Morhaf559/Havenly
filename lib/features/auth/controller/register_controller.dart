@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_havenly_application/features/auth/Binding/auth_binding.dart';
 import 'package:my_havenly_application/features/auth/service/auth_api_service.dart';
+import 'package:my_havenly_application/features/auth/view/screens/otp_screen.dart';
 import 'package:my_havenly_application/features/home/view/screens/home_screen.dart';
 
 import 'date_controller.dart';
@@ -148,7 +149,8 @@ class RegisterController extends GetxController {
       if (result.token != null && result.user != null) {
         Get.snackbar(
           'Congratulations!'.tr,
-          'The account has been created successfully'.tr,
+          'The account has been created successfully,Please activate the code'
+              .tr,
           snackPosition: SnackPosition.TOP,
           backgroundColor: Colors.green,
           colorText: Colors.white,
@@ -157,7 +159,11 @@ class RegisterController extends GetxController {
 
         // Navigate to home screen after a short delay to show success message
         await Future.delayed(const Duration(milliseconds: 500));
-        Get.offAll(() => const HomeScreen(), binding: AuthBinding());
+        Get.offAll(
+          () => const OtpScreen(),
+          arguments: {'phone': phoneController.text},
+          binding: AuthBinding(),
+        );
       } else {
         Get.snackbar(
           'Registration failed'.tr,

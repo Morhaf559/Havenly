@@ -1,9 +1,12 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:my_havenly_application/core/controllers/auth_state_controller.dart';
+import 'package:my_havenly_application/core/routes/app_routes.dart';
+import 'package:my_havenly_application/core/services/navigation_service.dart';
 import 'package:my_havenly_application/features/auth/view/screens/login_screen.dart';
-import 'package:my_havenly_application/features/auth/Binding/auth_binding.dart';
-import 'package:my_havenly_application/features/home/view/screens/home_screen.dart';
+import 'package:my_havenly_application/features/auth/bindings/auth_binding.dart';
 
 class OnboardingController extends GetxController {
   final PageController pageController = PageController();
@@ -23,7 +26,7 @@ class OnboardingController extends GetxController {
   }
 
   void nextPage() {
-    if (currentPage.value < 1) {
+    if (currentPage.value < 2) {
       pageController.nextPage(
         duration: const Duration(milliseconds: 300),
         curve: Curves.easeInOut,
@@ -37,15 +40,30 @@ class OnboardingController extends GetxController {
     completeOnboarding();
   }
 
-  void completeOnboarding() {
-    // Temporarily disabled for development/testing - allows onboarding to show every app launch
-    // TODO: Uncomment the line below when ready for production to enable one-time onboarding
-    storage.write('has_seen_onboarding', true);
-    String? token = storage.read('token');
-    if (token != null && token.isNotEmpty) {
-      Get.offAll(() => const HomeScreen());
-    } else {
-      Get.offAll(() => LoginScreen(), binding: AuthBinding());
+  void completeOnboarding() async {
+    try {
+      await storage.write('has_seen_onboarding', true);
+      
+      final authStateController = Get.find<AuthStateController>();
+      await authStateController.ensureAuthStateLoaded();
+      
+      if (authStateController.isLoggedIn) {
+        Get.offAllNamed(AppRoutes.main);
+      } else {
+        final navigationSuccess = NavigationService.offAll(
+          () => LoginScreen(),
+          binding: AuthBinding(),
+          fallback: AppRoutes.login,
+        );
+
+        if (!navigationSuccess) {
+          NavigationService.offAllNamed(AppRoutes.login);
+        }
+      }
+    } catch (e) {
+      debugPrint('OnboardingController: Error completing onboarding: $e');
+      await storage.write('has_seen_onboarding', true);
+      NavigationService.offAllNamed(AppRoutes.login);
     }
   }
 

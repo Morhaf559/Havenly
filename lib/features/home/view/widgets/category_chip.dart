@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:my_havenly_application/core/utils/app_colors.dart';
 
 class CategoryChip extends StatelessWidget {
   final String name;
@@ -16,27 +18,32 @@ class CategoryChip extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        margin: const EdgeInsets.only(right: 12),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        curve: Curves.easeInOut,
+        padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+        margin: EdgeInsets.only(right: 12.w),
         decoration: BoxDecoration(
-          color: isSelected ? const Color(0xff001733) : Colors.white,
-          borderRadius: BorderRadius.circular(20),
+          color: isSelected ? AppColors.primaryNavy : Colors.white,
+          borderRadius: BorderRadius.circular(20.r),
           border: Border.all(
-            color: isSelected ? const Color(0xff001733) : Colors.grey.shade300,
+            color: isSelected
+                ? AppColors.primaryNavy
+                : Colors.grey.shade300,
             width: 1,
           ),
         ),
         child: Text(
           name,
           style: TextStyle(
-            fontSize: 14,
+            fontSize: 14.sp,
             fontWeight: isSelected ? FontWeight.w600 : FontWeight.normal,
-            color: isSelected ? Colors.white : Colors.grey.shade700,
+            color: isSelected
+                ? Colors.white
+                : AppColors.textSecondary,
           ),
         ),
       ),
     );
   }
 }
-

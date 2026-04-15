@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:my_havenly_application/features/auth/controller/logout_controller.dart';
+import 'package:my_havenly_application/features/auth/controller/theme_controller.dart';
 import '../../controller/home_controller.dart';
 import '../../controller/main_navigation_controller.dart';
 import '../widgets/category_chip.dart';
@@ -17,8 +18,12 @@ class HomeScreen extends StatelessWidget {
     final navigationController = Get.put(MainNavigationController());
     // final LogoutController logoutController = Get.put(LogoutController());
     final logoutController = Get.find<LogoutController>();
+
     return Scaffold(
-      backgroundColor: Colors.grey.shade50,
+      backgroundColor: ThemeController.getHomeBg(context),
+      /* Get.isDarkMode
+          ? Colors.grey.shade900
+          : Colors.grey.shade50, */
       body: SafeArea(
         child: Obx(
           () => SingleChildScrollView(
@@ -37,19 +42,22 @@ class HomeScreen extends StatelessWidget {
                       // Sidebar menu icon
                       GestureDetector(
                         onTap: controller.openSidebar,
-                        child: SvgPicture.asset(
-                          'assets/svgs/notification_icon.svg',
-                        ),
+                        // child: SvgPicture.asset(
+                        //   'assets/svgs/notification_icon.svg',
+                        // ),
+                        child: Icon(Icons.notifications, size: 35),
                       ),
                       // Notes section iconw
                       GestureDetector(
                         onTap: controller.openNotes,
 
-                        child: SvgPicture.asset('assets/svgs/menu_icom.svg'),
+                        // child: SvgPicture.asset('assets/svgs/menu_icom.svg'),
+                        child: Icon(Icons.menu, size: 35),
                       ),
                     ],
                   ),
                 ),
+                SizedBox(height: 30),
 
                 // User information section
                 Padding(
@@ -59,15 +67,34 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       Text(
                         'Hello! '.tr + ' ${controller.userName}',
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 28,
                           fontWeight: FontWeight.bold,
-                          color: Color(0xff001733),
+                          color: Get.isDarkMode
+                              ? Colors.white
+                              : Color(0xff001733),
                         ),
                       ),
                       const SizedBox(height: 8),
                       Row(
                         children: [
+                          ElevatedButton.icon(
+                            onPressed: () {
+                              Get.changeThemeMode(
+                                Get.isDarkMode
+                                    ? ThemeMode.light
+                                    : ThemeMode.dark,
+                              );
+                            },
+                            icon: Icon(
+                              Get.isDarkMode
+                                  ? Icons.light_mode
+                                  : Icons.dark_mode,
+                            ),
+                            label: Text(
+                              Get.isDarkMode ? "الوضع الفاتح" : "الوضع الداكن",
+                            ),
+                          ),
                           ElevatedButton(
                             //////////////////
                             onPressed: () {
@@ -77,7 +104,8 @@ class HomeScreen extends StatelessWidget {
                               'Logout',
                               style: TextStyle(color: Colors.red),
                             ),
-                          ), ////////////////
+                          ),
+                          ////////////////
                           Icon(
                             Icons.location_on,
                             size: 18,

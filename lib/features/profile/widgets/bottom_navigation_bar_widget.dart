@@ -1,6 +1,9 @@
-// Widget: Bottom Navigation Bar
 import 'package:flutter/material.dart';
-import '../../home/controller/main_navigation_controller.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import '../../../../core/utils/app_colors.dart';
+import '../../../../core/controllers/theme_controller.dart';
+import '../../main/controllers/main_navigation_controller.dart';
 import 'bottom_nav_item_widget.dart';
 
 class BottomNavigationBarWidget extends StatelessWidget {
@@ -10,45 +13,50 @@ class BottomNavigationBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 70,
-      margin: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: const Color(0xFF012E65),
-        borderRadius: BorderRadius.circular(35),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.1),
-            blurRadius: 10,
-            offset: const Offset(0, -2),
+    final themeController = Get.find<ThemeController>();
+    
+    return Obx(() {
+      final visibleTabs = controller.visibleTabs;
+      if (visibleTabs.isEmpty) {
+        return const SizedBox.shrink();
+      }
+
+      final isDark = themeController.themeMode == ThemeMode.dark ||
+          (themeController.themeMode == ThemeMode.system && Get.isDarkMode);
+      final backgroundColor = isDark 
+          ? AppColors.darkPrimaryColor 
+          : AppColors.primaryNavy;
+
+      return Container(
+        height: 100.h,
+        decoration: BoxDecoration(
+          color: backgroundColor,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 10.r,
+              offset: Offset(0, -2.h),
+            ),
+          ],
+        ),
+        child: SafeArea(
+          top: false,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: visibleTabs.asMap().entries.map((entry) {
+              final index = entry.key;
+              final tab = entry.value;
+
+              return BottomNavItemWidget(
+                icon: tab.icon,
+                label: tab.labelKey.tr,
+                index: index,
+                controller: controller,
+              );
+            }).toList(),
           ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          BottomNavItemWidget(
-            icon: Icons.home,
-            index: 0,
-            controller: controller,
-          ),
-          BottomNavItemWidget(
-            icon: Icons.explore,
-            index: 1,
-            controller: controller,
-          ),
-          BottomNavItemWidget(
-            icon: Icons.favorite,
-            index: 2,
-            controller: controller,
-          ),
-          BottomNavItemWidget(
-            icon: Icons.person,
-            index: 3,
-            controller: controller,
-          ),
-        ],
-      ),
-    );
+        ),
+      );
+    });
   }
 }
